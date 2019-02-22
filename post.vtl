@@ -1,0 +1,3 @@
+#set($actionId = "b9d89c803d")
+#set($savedContent = $workflowtool.fire($bodyMap, $actionId));
+$dotJSON.put("savedObject", $savedContent.getMap())
