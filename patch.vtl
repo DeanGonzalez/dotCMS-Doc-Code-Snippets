@@ -1,0 +1,13 @@
+#set($actionId = "b9d89c803d")
+
+#set($contentToPatch = $dotcontent.find($pathParam))
+#set($patchedMap = $contentToPatch.contentObject.getMap())
+
+#foreach($key in $bodyMap.keySet())
+    #if($patchedMap.get($key)) 
+        $patchedMap.put($key, $bodyMap.get($key))
+    #end
+#end
+
+#set($savedContent = $workflowtool.fire($patchedMap, $actionId));
+$dotJSON.put("savedObject", $savedContent.getMap())

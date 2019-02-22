@@ -1,0 +1,16 @@
+#if($pathParam) 
+   #set($employeeList = [$dotcontent.find($pathParam)])
+#else
+    #set($employeeList = $dotcontent.pull("+structureName:Employee +(conhost:$!{host.identifier} conhost:SYSTEM_HOST)",0,"Employee.lastName"))
+#end
+
+#if($request.getParameter("format"))
+    #set($format = $request.getParameter("format"))
+    #if($format == "xml" || $format == "XML")
+    #dotParse("/application/apivtl/employees/xmlemployees.vtl")
+    #else
+        #dotParse("/application/apivtl/employees/jsonemployees.vtl")
+    #end
+#else
+    #dotParse("/application/apivtl/employees/jsonemployees.vtl")
+#end

@@ -1,0 +1,3 @@
+#set($actionId = "777f1c6bc8")
+#set($contentToDelete = $dotcontent.find($pathParam))
+$workflowtool.fire($contentToDelete.contentObject.map, $actionId);
